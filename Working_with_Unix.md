@@ -1,0 +1,3 @@
+- Use man to look up the documentation for a command.
+- If you can’t think of the name of a command use apropos to search for a word associated with that command.
+- If you have access to a web browser, using a search engine might be better than man or apropos.
