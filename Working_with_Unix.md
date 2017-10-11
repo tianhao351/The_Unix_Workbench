@@ -21,7 +21,7 @@
 
 
 
-### 3.Search
+### 3.Search and Regular Expressions
 
 #### 3.1 grep
 
@@ -95,11 +95,83 @@ grep "x" states.txt
 
   ​
 
-#### 3.3
+#### 3.3character sets
 
+- The \w metacharacter corresponds to all “word” characters, the \d metacharacter corresponds to all “number” characters, and the \s metacharacter corresponds to all “space” characters
 
+- the \w metacharacter matches all letters, numbers, and even the underscore character (_). 
 
+- The -v flag (which stands for invert match) makes grep return all of the lines not matched by the regular expression. Note that the character sets for regular expressions also have their inverse sets: \W for non-words, \D for non-digits, and \S for non-spaces. Let’s take a look at using \W:
 
+- we can also create specific character sets using square brackets ([ ]) and then including the characters we wish to match in the square brackets
+
+- You can also create a regular expression for the compliment of a set by including a caret (^) in the beginning of a set
+
+- If you want to specify a range of characters you can use a hyphen (-) inside of the square brackets
+
+  ```shell
+  egrep "[e-q]" small.txt
+
+  ## abcdefghijklmnopqrstuvwxyz
+  ## rhythms
+  ## tragedy + time = humor
+  ## http://www.jhsph.edu/
+
+  egrep "[E-Q]" small.txt
+
+  ## ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+  egrep "[e-qE-Q]" small.txt
+
+  ## abcdefghijklmnopqrstuvwxyz
+  ## ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  ## rhythms
+  ## tragedy + time = humor
+  ## http://www.jhsph.edu/
+  ```
+
+- the caret (^), which represents the start of a line, and the dollar sign ($) which represents the end of line.
+
+  ```shell
+  egrep "^M" states.txt
+
+  ## Maine
+  ## Maryland
+  ## Massachusetts
+
+  ```
+
+- “or” metacharacter (|)
+
+  ```shell
+  egrep "North|South|East|West" states.txt
+
+  ## North Carolina
+  ## North Dakota
+  ## South Carolina
+  ## South Dakota
+  ## West Virginia
+  ```
+
+- you can display the line number that a match occurs on using the -n flag:
+
+  ```shell
+  egrep -n "t$" states.txt
+
+  ## 7:Connecticut
+  ## 45:Vermont
+  ```
+
+- you can grep multiple files at once by providing multiple file arguments:
+
+  ```shell
+  egrep "New" states.txt canada.txt
+
+  ## states.txt:New Hampshire
+  ## states.txt:New Jersey
+  ```
+
+- find can be used to search for the names of files in a directory.
 
 ### 4.configure
 
