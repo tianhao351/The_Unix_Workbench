@@ -23,7 +23,79 @@
 
 ### 3.Search
 
+#### 3.1 grep
 
+- One of the most popular tools for searching through text files is grep. The simplest use of grep requires two arguments: a regular expression and a text file to search. Let’s see a simple example of grep in action and then I’ll explain how it works:
+
+```shell
+grep "x" states.txt
+```
+
+#### 3.2 metacharacters and egrep
+
+-  metacharacters are characters that can be used to represent other characters
+
+- To take full advantage of all of the metacharacters we should use grep’s cousin egrep, which just extends grep’s capabilities
+
+-  "." (period) metacharacter represents *any* character.
+
+  ```shell
+  egrep "i.g" states.txt
+
+  ## Virginia
+  ## Washington
+  ## West Virginia
+  ## Wyoming
+  ```
+
+- "+" (plus) represents one or more occurrences of the preceeding expression.
+
+  ```shell
+  egrep "s+as" states.txt
+
+  ## Arkansas
+  ## Kansas
+  ## kasssas
+  ```
+
+- " * " (star) metacharacter which represents zero or more occurrences of the preceding expression.
+
+  ```shell
+  egrep "s*as" states.txt
+
+  ## Alaska
+  ## Arkansas
+  ## Kansas
+  ## Massachusetts
+  ## Nebraska
+  ## Texas
+  ## Washington
+  ```
+
+- ou can use curly brackets ({ }) to specify an exact number of occurrences of an expression. For example the regular expression "s{2}" specifies exactly two occurrences of the character “s”. 
+
+  ```shell
+  egrep "s{2}" states.txt
+
+  ## Massachusetts
+  ## Mississippi
+  ## Missouri
+  ## Tennessee
+
+  ```
+
+- We could also search for state names that have between two and three adjacent occurrences of the letter “s” with the regular expression "s{2,3}":
+
+  ```shell
+  egrep "d{2,3}d" states.txt
+
+  ## dssd
+  ## dsssd
+  ```
+
+  ​
+
+#### 3.3
 
 
 
@@ -45,7 +117,32 @@
 
   
 
+### 5.differentiate
 
+- The md5 and shasum commands use different algorithms to create codes (called hashes or checksums) that are unique to the contents of a file.
+- These hashes can be used to ensure that a file is genuine.
+
+
+
+### 6.pip
+
+- he pipe allows us to take the output of a command, which would normally be printed to the console, and use it as the input to another command.
+
+  ```bash
+  ls -al | grep "Feb" | less
+  ```
+
+  ```bash
+  grep "[aeiou]$" states.txt | wc -l
+  ```
+
+  ​
+
+### 7.Make
+
+- make is a tool for creating relationships between files and programs, so that files that depend on other files can be automatically rebuilt.
+- makefiles are text files that contain a list of rules.
+- Rules are made up of targets (files to be built), commands (a list of bash commands that build the target), and dependencies (files that the target depends on to be built).
 
 
 
